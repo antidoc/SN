@@ -18,7 +18,7 @@ class PostUpdate(PostBase):
 class PostInDB(IDModelMixin, PostBase):
     title: str
     content: str
-    author: str
+    author: int
 
 
 class PostPublic(IDModelMixin, PostBase):

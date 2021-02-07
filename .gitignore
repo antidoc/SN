@@ -1,5 +1,4 @@
 # My stuff
-# .env
 .pytest_cache/
 
 # Created by .ignore support plugin (hsz.mobi)
@@ -82,7 +81,7 @@ target/
 celerybeat-schedule
 
 # dotenv
-.env
+# .env
 
 # virtualenv
 venv/
