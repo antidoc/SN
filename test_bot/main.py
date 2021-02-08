@@ -59,7 +59,7 @@ def set_like_on_post(post_number, token):
     return f"Post {post_number} was liked successfully"
 
 if __name__ == "__main__":
-    for i in range(number_of_users+1):
+    for i in range(number_of_users):
         print(register_user(i))
 
     for key, value in user_tokens.items():
