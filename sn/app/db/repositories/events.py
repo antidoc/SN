@@ -61,8 +61,8 @@ class EventsRepository(BaseRepository):
 
     async def get_aggregated_activity(self, *, date_from: str, date_to: str, event_type):
         aggregated_activity_values = {
-            "date_from": datetime.fromisoformat(date_from),
-            "date_to": datetime.fromisoformat(date_to),
+            "date_from": date_from,
+            "date_to": date_to,
             "event_type": event_type
         }
         aggregated_activity = await self.db.fetch_all(query=GET_ACTIVITY_BY_DATE, values=aggregated_activity_values)

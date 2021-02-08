@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from typing import Dict, List
 
 from fastapi import APIRouter, Path, Depends, HTTPException, Query
@@ -49,6 +49,7 @@ async def get_aggregated_activity(
         date_to: str,
         events_repo: EventsRepository = Depends(get_repository(EventsRepository))
         ) -> List:
+
     try:
         date_from = datetime.fromisoformat(date_from)
         date_to = datetime.fromisoformat(date_to)
