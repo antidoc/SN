@@ -1,7 +1,8 @@
+import datetime
 from typing import Dict, List
 
 from fastapi import APIRouter, Path, Depends, HTTPException, Query
-from starlette.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND
+from starlette.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_422_UNPROCESSABLE_ENTITY
 
 from app.db.repositories.events import EventsRepository
 from app.db.repositories.posts import PostsRepository
@@ -48,6 +49,15 @@ async def get_aggregated_activity(
         date_to: str,
         events_repo: EventsRepository = Depends(get_repository(EventsRepository))
         ) -> List:
+    try:
+        date_from = datetime.fromisoformat(date_from)
+        date_to = datetime.fromisoformat(date_to)
+    except:
+        raise HTTPException(
+            status_code=HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Date range is incorrect"
+        )
+
     aggregated_data = await events_repo.get_aggregated_activity(
         date_from=date_from,
         date_to=date_to,
